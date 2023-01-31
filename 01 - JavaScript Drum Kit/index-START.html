@@ -60,6 +60,17 @@
 
 <script>
 
+  window.addEventListener('keydown', function(e){
+    //console.log(e.keycode);
+    const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`); //get keyCode associated with pressed key
+    if(!audio) return;  //if no matching audio exit function
+    audio.play();  //play audio
+
+
+
+  })
+
+
 </script>
 
 
