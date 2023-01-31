@@ -60,16 +60,31 @@
 
 <script>
 
-  window.addEventListener('keydown', function(e){
+  
+  
+  function playSound(e) {
     //console.log(e.keycode);
-    const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`); //get keyCode associated with pressed key
+    const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`); //get audio associated with pressed keyCode
+    const key = document.querySelector(`.key[data-key="${e.keyCode}"]`); //get key associated with pressed keyCode
     if(!audio) return;  //if no matching audio exit function
+    audio.currentTime = 0;  //rewind to the start of the sound
     audio.play();  //play audio
+    key.classList.add('playing'); //add the class "playing" from CSS
 
 
 
-  })
+  }
 
+  function removeTransition (e) {
+    if (e.propertyName !== 'transform') return; // skip properties that have not changed
+    this.classList.remove('playing');
+  }
+
+
+  const keys = document.querySelectorAll('.key');
+  keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+  
+  window.addEventListener('keydown', playSound);
 
 </script>
 
