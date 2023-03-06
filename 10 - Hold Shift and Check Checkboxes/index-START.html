@@ -97,6 +97,19 @@
   </div>
 
 <script>
+  const checkboxes [] = document.querySelectorAll("#item");
+  console.table(checkboxes);
+
+  function toggleChecked(e) {
+    console.log(e);
+
+  }
+
+
+  checkboxes.array.forEach(checkbox => checkbox.addEventListener('click', toggleChecked));
+
+
+
 </script>
 </body>
 </html>
