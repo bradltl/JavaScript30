@@ -97,16 +97,41 @@
   </div>
 
 <script>
-  const checkboxes [] = document.querySelectorAll("#item");
+  const checkboxes = document.querySelectorAll('.inbox [type="checkbox"]');
   console.table(checkboxes);
 
+  let lastChecked;
+
+
   function toggleChecked(e) {
+    //check if shift key is down
+    //AND check if they are checking it
+    let inBetween = false;
+    if(e.shiftKey && this.checked) {
+      //loop through every checkbox
+      //look for first one checked
+      checkboxes.forEach(checkbox => {
+        console.log(checkbox);
+        if(checkbox === this || checkbox === lastChecked) {
+          //looks at each cb sets inBetween to opposite if 
+          inBetween = !inBetween;
+          console.log('Starting check');
+        }
+        //sets checkbox value
+        if(inBetween) {
+          checkbox.checked = true;
+        }
+      })
+
+
+    }
     console.log(e);
+    lastChecked = this;
 
   }
 
 
-  checkboxes.array.forEach(checkbox => checkbox.addEventListener('click', toggleChecked));
+  checkboxes.forEach(checkbox => checkbox.addEventListener('click', toggleChecked));
 
 
 
