@@ -51,7 +51,9 @@ function handleProgress() {
 }
 
 function scrub (e) {
-    console.log(e);
+    //console.log(e);
+    const scrubTime = (e.offsetX / progress.offsetWidth) * video.duration;
+    video.currentTime = scrubTime;
 }
 
 
@@ -64,7 +66,9 @@ video.addEventListener('pause', updateButton);
 video.addEventListener('timeupdate', handleProgress);
 //video.addEventListener('progress', handleProgress);
 
-progressBar.addEventListener('click', scrub);
+let mousedown = false;
+progress.addEventListener('click', scrub);
+progress.addEventListener('mouseMove', (e) => mousedown && scrub(e));
 
 
 toggle.addEventListener('click', togglePlay);
