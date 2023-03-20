@@ -8,6 +8,20 @@
 </head>
 <body>
 <script>
+  const pressed = [];
+  const secretCode = 'bradltl'
+  window.addEventListener('keyup', (e) => {
+    console.log(e.key);
+    pressed.push(e.key);
+    console.log(pressed);
+    let newCode = '';
+    for (let i = 0; i < pressed.length; i++) {
+      newCode += pressed[i];
+    }
+    if(newCode === secretCode) {
+      console.log('You did it');
+    }
+  })
 </script>
 </body>
 </html>
